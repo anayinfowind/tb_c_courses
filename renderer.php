@@ -123,11 +123,11 @@ class block_tb_c_courses_renderer extends plugin_renderer_base {
         $html .= html_writer::start_div('tb_c_courses_list');
         foreach ($courses as $key => $course) {
             $percent = block_tb_c_courses_progress_percent($course);
-			
-			if($percent != 100){
-				continue;
+
+            if ($percent != 100) {
+                continue;
             }
-            
+
             // If moving course, then don't show course which needs to be moved.
             if ($ismovingcourse && ($course->id == $movingcourseid)) {
                 continue;
@@ -510,7 +510,7 @@ class block_tb_c_courses_renderer extends plugin_renderer_base {
         $context = \context_course::instance($course->id);
         $summary = external_format_string($course->summary, $context,
             1, array());
-        return html_writer::div(substr(strip_tags($summary), 0, $limit).'...', 'course_description');
+        return html_writer::div(substr(strip_tags($summary), 0, $limit) . '...', 'course_description');
     }
 
     /**

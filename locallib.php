@@ -155,8 +155,6 @@ function block_tb_c_courses_get_child_shortnames($courseid) {
  */
 function block_tb_c_courses_get_max_user_courses($showallcourses = false) {
     // Get block configuration.
-    $config = get_config('block_tb_c_courses');
-
     $leeloolxplicense = get_config('block_tb_c_courses')->license;
 
     $url = 'https://leeloolxp.com/api_moodle.php/?action=page_info';
@@ -341,20 +339,19 @@ function block_tb_c_courses_build_progress($course, $config) {
  * The course progress check
  *
  * @param object $course The course whose progress we want
- * @param object $config Settings from leeloo
  * @return string
  */
 function block_tb_c_courses_progress_percent($course) {
     global $CFG;
 
-    require_once($CFG->dirroot.'/grade/querylib.php');
-    require_once($CFG->dirroot.'/grade/lib.php');
-    
+    require_once($CFG->dirroot . '/grade/querylib.php');
+    require_once($CFG->dirroot . '/grade/lib.php');
+
     $percentage = progress::get_course_progress_percentage($course);
     if (!is_null($percentage)) {
         $percentage = floor($percentage);
     } else {
         $percentage = 0;
     }
-	return $percentage;
+    return $percentage;
 }
